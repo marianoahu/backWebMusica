@@ -1,5 +1,7 @@
 package com.webmusical.springboot.backend.apirest.services.impl;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.webmusical.springboot.backend.apirest.models.entity.User;
 import com.webmusical.springboot.backend.apirest.models.dto.UserDTO;
 import com.webmusical.springboot.backend.apirest.repositories.UserRepository;
@@ -35,6 +37,20 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDTO save(UserDTO userDTO) {
         User user = UserConverter.dtoToEntity(userDTO);
+        try { //testing if json arrives correctly to back // it does not
+        // Crear una instancia de ObjectMapper
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+
+        // Convertir el objeto a JSON
+        String json = objectMapper.writeValueAsString(user);
+
+        // Imprimir el JSON en la consola
+        System.out.println(json);
+    } catch (Exception e) {
+        e.printStackTrace();
+
+}
         user = userRepository.save(user);
         return UserConverter.entityToDTO(user);
     }
