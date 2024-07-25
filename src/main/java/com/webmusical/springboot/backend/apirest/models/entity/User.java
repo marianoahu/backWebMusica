@@ -2,6 +2,7 @@ package com.webmusical.springboot.backend.apirest.models.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -13,10 +14,18 @@ public class User implements Serializable {
     private long id;
     private String name;
     private String lastName;
-    @Column(name = "create_at")
-    @Temporal(TemporalType.DATE)
-    private Date createAt;
+//    @Column(name = "create_at")
+//    @Temporal(TemporalType.DATE)
+//    private Date createAt;
     private String email;
+
+    @Column(updatable = false)
+    private LocalDateTime createAt;
+
+    @PrePersist
+    protected void onCreate() {
+        this.createAt = LocalDateTime.now();
+    }
 
     public long getId() {
         return id;
@@ -42,13 +51,13 @@ public class User implements Serializable {
         this.lastName = lastName;
     }
 
-    public Date getCreateAt() {
-        return createAt;
-    }
-
-    public void setCreateAt(Date createAt) {
-        this.createAt = createAt;
-    }
+//    public Date getCreateAt() {
+//        return createAt;
+//    }
+//
+//    public void setCreateAt(Date createAt) {
+//        this.createAt = createAt;
+//    }
 
     public String getEmail() {
         return email;
