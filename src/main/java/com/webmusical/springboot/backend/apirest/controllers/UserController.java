@@ -26,9 +26,9 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<UserDTO> createUsuario(@RequestBody UserDTO userDTO) {
+    public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO userDTO) {
         UserDTO newUserDTO = userService.save(userDTO);
-        try { //testing if json arrives correctly to back // it does not
+        try {
             // Crear una instancia de ObjectMapper
             ObjectMapper objectMapper = new ObjectMapper();
             objectMapper.enable(SerializationFeature.INDENT_OUTPUT);

@@ -13,12 +13,8 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
-    private String lastName;
-//    @Column(name = "create_at")
-//    @Temporal(TemporalType.DATE)
-//    private Date createAt;
+    private String lastName;;
     private String email;
-
     @Column(updatable = false)
     private LocalDateTime createAt;
 
@@ -50,14 +46,6 @@ public class User implements Serializable {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
-//    public Date getCreateAt() {
-//        return createAt;
-//    }
-//
-//    public void setCreateAt(Date createAt) {
-//        this.createAt = createAt;
-//    }
 
     public String getEmail() {
         return email;
